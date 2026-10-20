@@ -13,8 +13,18 @@ export default defineConfig(({ mode }) => ({
     mainFields: ['module'],
   },
   plugins: [
-    analog(),
-    tailwindcss()
+    analog({
+      prerender: {
+        routes: ['/'],
+      },
+      content: {
+        highlighter: 'prism',
+        prismOptions: {
+          additionalLangs: ['typescript', 'json', 'bash', 'yaml'],
+        },
+      },
+    }),
+    tailwindcss(),
   ],
   test: {
     globals: true,
