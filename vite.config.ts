@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     analog({
       prerender: {
-        routes: ['/'],
+        routes: ['/', '/auth'],
       },
       content: {
         highlighter: 'prism',
