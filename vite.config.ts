@@ -15,7 +15,20 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     analog({
       prerender: {
-        routes: ['/', '/auth'],
+        routes: [
+          '/',
+          '/auth',
+          '/firestore',
+          '/database',
+          '/storage',
+          '/functions',
+          '/messaging',
+          '/analytics',
+          '/performance',
+          '/remote-config',
+          '/app-check',
+          '/ai',
+        ],
       },
       content: {
         highlighter: 'prism',
