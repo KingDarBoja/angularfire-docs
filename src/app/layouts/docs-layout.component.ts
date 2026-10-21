@@ -27,8 +27,16 @@ export interface PageLink {
 
         <!-- Main Content Area -->
         <main class="min-w-0 flex-1 px-4 py-8 sm:px-8 lg:px-12">
+          @if (loading()) {
+            <header aria-hidden="true" class="mb-8 animate-pulse border-b border-slate-800 pb-6">
+              <div class="mb-4 h-5 w-28 rounded-full bg-slate-800"></div>
+              <div class="h-10 max-w-lg rounded bg-slate-800"></div>
+              <div class="mt-4 h-5 max-w-3xl rounded bg-slate-800/70"></div>
+            </header>
+          }
+
           <!-- Page Header (if title exists) -->
-          @if (title()) {
+          @if (!loading() && title()) {
             <header class="mb-8 border-b border-slate-800 pb-6">
               <div class="flex items-center gap-2 mb-2">
                 <span class="rounded-full bg-amber-500/10 border border-amber-500/30 px-2.5 py-0.5 text-xs font-mono font-medium text-amber-300">
@@ -48,7 +56,18 @@ export interface PageLink {
 
           <!-- Transcluded Content (Markdown or custom) -->
           <article class="prose max-w-none">
-            <ng-content />
+            @if (loading()) {
+              <div role="status" class="animate-pulse space-y-5" aria-label="Loading documentation page">
+                <span class="sr-only">Loading documentation page</span>
+                <div class="h-5 max-w-3xl rounded bg-slate-800/80"></div>
+                <div class="h-5 max-w-2xl rounded bg-slate-800/70"></div>
+                <div class="h-32 rounded-xl border border-slate-800 bg-slate-900/70"></div>
+                <div class="h-5 max-w-3xl rounded bg-slate-800/70"></div>
+                <div class="h-5 max-w-xl rounded bg-slate-800/60"></div>
+              </div>
+            } @else {
+              <ng-content />
+            }
           </article>
 
           <!-- Prev / Next Navigation -->
@@ -125,6 +144,7 @@ export interface PageLink {
 export class DocsLayoutComponent {
   readonly isMobileMenuOpen = signal<boolean>(false);
 
+  readonly loading = input(false);
   readonly title = input<string>('');
   readonly description = input<string>('');
   readonly badge = input<string>('v21 Guide');

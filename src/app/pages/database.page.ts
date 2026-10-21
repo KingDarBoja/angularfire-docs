@@ -36,6 +36,8 @@ interface DocAttributes {
       >
         <analog-markdown [content]="page.content" />
       </app-docs-layout>
+    } @else {
+      <app-docs-layout [loading]="true" />
     }
   `,
 })

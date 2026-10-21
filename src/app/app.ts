@@ -9,6 +9,7 @@ import { RouterOutlet } from '@angular/router';
     :host {
       display: block;
       min-height: 100vh;
+      background-color: #030712;
     }
   `,
 })
