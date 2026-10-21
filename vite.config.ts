@@ -2,6 +2,8 @@
 
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
+import angular from '@analogjs/vite-plugin-angular';
+import nitro from '@analogjs/vite-plugin-nitro';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://vitejs.dev/config/
@@ -37,6 +39,8 @@ export default defineConfig(({ mode }) => ({
         },
       },
     }),
+    angular(),
+    nitro(),
     tailwindcss(),
   ],
   test: {

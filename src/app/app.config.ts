@@ -1,6 +1,5 @@
 import {
   provideHttpClient,
-  withInterceptors,
 } from '@angular/common/http';
 import {
   ApplicationConfig,
@@ -8,9 +7,8 @@ import {
 } from '@angular/core';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
-import { provideFileRouter, requestContextInterceptor } from '@analogjs/router';
+import { provideFileRouter } from '@analogjs/router';
 import { provideContent, withMarkdownRenderer } from '@analogjs/content';
-import { withPrismHighlighter } from '@analogjs/content/prism-highlighter';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,13 +20,10 @@ export const appConfig: ApplicationConfig = {
       }),
       withComponentInputBinding()
     ),
-    provideHttpClient(
-      withInterceptors([requestContextInterceptor])
-    ),
+    provideHttpClient(),
     provideClientHydration(withEventReplay()),
     provideContent(
-      withMarkdownRenderer(),
-      withPrismHighlighter()
+      withMarkdownRenderer()
     ),
   ],
 };
