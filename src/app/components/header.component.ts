@@ -21,11 +21,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
           </button>
 
           <a routerLink="/" class="group flex items-center gap-2.5 transition">
-            <!-- Firebase Flame Icon -->
-            <div class="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-orange-600 shadow-md shadow-orange-500/20">
-              <svg class="h-5 w-5 text-slate-950" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M4.68 18.06L8.43 2.68c.11-.47.69-.62.99-.25l3.29 4.12 2.3-4.32c.22-.41.79-.44 1.04-.06l5.77 15.89c.28.77-.28 1.58-1.1 1.58H5.78c-.82 0-1.38-.81-1.1-1.58z" />
-              </svg>
+            <!-- AngularFire Icon -->
+            <div class="relative flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br">
+              <img src="/angularfire_icon.svg" alt="" class="h-8 w-8 object-cover" />
             </div>
             <div class="flex items-center gap-2">
               <span class="text-lg font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">
@@ -75,7 +73,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
             class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-colors hover:bg-slate-800 hover:text-white"
           >
             <span>Vertex AI</span>
-            <span class="rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-1.5 py-0.2 text-[9px] font-bold text-slate-950 uppercase tracking-wider">
+            <span class="rounded-full bg-linear-to-r from-amber-500 to-orange-500 px-1.5 py-0.2 text-[9px] font-bold text-slate-950 uppercase tracking-wider">
               NEW
             </span>
           </a>
