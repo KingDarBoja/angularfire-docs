@@ -107,6 +107,7 @@ export class SidebarComponent {
       title: 'Getting Started',
       items: [
         { label: 'Core Overview', route: '/', exact: true, badge: 'v21', badgeColor: 'bg-amber-500/20 text-amber-300' },
+        { label: 'Compatibility & Contribution', route: '/getting-started/compatibility' },
       ],
     },
     {
