@@ -11,17 +11,14 @@ The matrix lists the AngularFire release line published for each Angular major a
 
 | AngularFire | Angular | Firebase |
 | :--- | :--- | :--- |
-| [7.6.1](https://www.npmjs.com/package/@angular/fire/v/7.6.1) | 12 | `^9.8.0` |
-| [7.6.1](https://www.npmjs.com/package/@angular/fire/v/7.6.1) | 13 | `^9.8.0` |
-| [7.6.1](https://www.npmjs.com/package/@angular/fire/v/7.6.1) | 14 | `^9.8.0` |
-| [7.6.1](https://www.npmjs.com/package/@angular/fire/v/7.6.1) | 15 | `^9.8.0` |
-| [16.0.0](https://www.npmjs.com/package/@angular/fire/v/16.0.0) | 16 | `^10.5.0` |
-| [17.1.0](https://www.npmjs.com/package/@angular/fire/v/17.1.0) | 17 | `^10.12.0` |
-| [18.0.1](https://www.npmjs.com/package/@angular/fire/v/18.0.1) | 18 | `^10.12.0` |
-| [19.2.0](https://www.npmjs.com/package/@angular/fire/v/19.2.0) | 19 | `^11.8.0` |
-| [20.1.1](https://www.npmjs.com/package/@angular/fire/v/20.1.1) | 20 | `^11.8.0` |
+| [22.0.0-canary](https://www.npmjs.com/package/@angular/fire/v/22.0.0-canary.20261023210158.sha-29ca012) (canary) | `^22` | `^12.18.0` |
 | [21.0.0-rc.2](https://www.npmjs.com/package/@angular/fire/v/21.0.0-rc.2) (pre-release) | `^21.2.0` | `^12.18.0` |
-| [22.0.0-canary](https://www.npmjs.com/package/@angular/fire/v/22.0.0-canary.20261023210158.sha-29ca012) (canary) | 22 | `^12.18.0` |
+| [20.1.1](https://www.npmjs.com/package/@angular/fire/v/20.1.1) | `^20` | `^11.8.0` |
+| [19.2.0](https://www.npmjs.com/package/@angular/fire/v/19.2.0) | `^19` | `^11.8.0` |
+| [18.0.1](https://www.npmjs.com/package/@angular/fire/v/18.0.1) | `^18` | `^10.12.0` |
+| [17.1.0](https://www.npmjs.com/package/@angular/fire/v/17.1.0) | `^17` | `^10.12.0` |
+| [16.0.0](https://www.npmjs.com/package/@angular/fire/v/16.0.0) | `^16` | `^10.5.0` |
+| [7.6.1](https://www.npmjs.com/package/@angular/fire/v/7.6.1) | `^12-^15` | `^9.8.0` |
 
 Firebase ranges use npm semver notation. The AngularFire 21 and 22 entries are pre-release builds, not stable releases. The supported Angular and Firebase versions are defined by each linked package's metadata; check it before upgrading because compatibility can change between releases.
 
