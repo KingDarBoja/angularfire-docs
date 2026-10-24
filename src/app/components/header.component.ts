@@ -88,6 +88,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
             class="hidden sm:inline-flex items-center gap-1.5 rounded-md border border-slate-800 bg-slate-900 px-2.5 py-1 text-xs font-medium text-slate-400 hover:border-slate-700 hover:text-slate-200 transition"
           >
             <span>Powered by</span>
+            <img src="/analog.svg" alt="" class="h-4 w-4 object-cover" />
             <span class="font-semibold text-red-400">AnalogJS</span>
           </a>
 
