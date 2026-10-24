@@ -155,8 +155,8 @@ code[class*="language-"] {
   font-size: 0.9rem;
 }
 
-.prose table :not(pre) > code::before,
-.prose table :not(pre) > code::after {
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
   content: none;
 }
 
