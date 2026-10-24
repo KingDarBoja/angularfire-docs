@@ -189,6 +189,7 @@ AngularFire provides comprehensive modules covering every capability of the Fire
 
 Explore the individual section guides to dive into detailed APIs and sample implementations:
 
+- [Check compatibility and learn how to contribute](/getting-started/compatibility)
 - [Configure Authentication](/auth)
 - [Query Cloud Firestore](/firestore)
 - [Call Cloud Functions](/functions)

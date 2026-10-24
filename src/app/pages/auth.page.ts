@@ -31,7 +31,7 @@ interface DocAttributes {
         [description]="page.attributes.description"
         badge="Auth & Identity"
         [toc]="page.toc ?? []"
-        [prev]="{ label: 'Core Overview', route: '/' }"
+        [prev]="{ label: 'Compatibility & Contribution', route: '/getting-started/compatibility' }"
         [next]="{ label: 'Cloud Firestore', route: '/firestore' }"
       >
         <analog-markdown [content]="page.content" />

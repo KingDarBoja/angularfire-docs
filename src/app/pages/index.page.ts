@@ -31,7 +31,7 @@ interface DocAttributes {
         [description]="page.attributes.description"
         badge="v21 Core"
         [toc]="page.toc ?? []"
-        [next]="{ label: 'Authentication', route: '/auth' }"
+        [next]="{ label: 'Compatibility & Contribution', route: '/getting-started/compatibility' }"
       >
         <analog-markdown [content]="page.content" />
       </app-docs-layout>
