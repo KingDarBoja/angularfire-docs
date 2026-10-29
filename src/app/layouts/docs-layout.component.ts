@@ -1,7 +1,7 @@
 import { Component, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from '../components/header.component';
-import { SidebarComponent } from '../components/sidebar.component';
+import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { TocComponent, TocItem } from '../components/toc.component';
 
 export interface PageLink {
