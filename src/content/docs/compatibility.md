@@ -11,8 +11,8 @@ The matrix lists the AngularFire release line published for each Angular major a
 
 | AngularFire | Angular | Firebase |
 | :--- | :--- | :--- |
-| [22.0.0-canary](https://www.npmjs.com/package/@angular/fire/v/22.0.0-canary.20261023210158.sha-29ca012) (canary) | `^22` | `^12.18.0` |
-| [21.0.0-rc.2](https://www.npmjs.com/package/@angular/fire/v/21.0.0-rc.2) (pre-release) | `^21.2.0` | `^12.18.0` |
+| [22.0.0-rc.0](https://www.npmjs.com/package/@angular/fire/v/22.0.0-rc.0) (pre-release) | `^22` | `^12.18.0` |
+| [21.0.0](https://www.npmjs.com/package/@angular/fire/v/21.0.0) | `^21.2.0` | `^12.18.0` |
 | [20.1.1](https://www.npmjs.com/package/@angular/fire/v/20.1.1) | `^20` | `^11.8.0` |
 | [19.2.0](https://www.npmjs.com/package/@angular/fire/v/19.2.0) | `^19` | `^11.8.0` |
 | [18.0.1](https://www.npmjs.com/package/@angular/fire/v/18.0.1) | `^18` | `^10.12.0` |
