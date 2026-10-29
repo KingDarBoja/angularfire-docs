@@ -10,11 +10,13 @@ order: 3
 **Cloud Firestore** is Firebase's flexible, scalable NoSQL cloud database for client and server development. In **AngularFire v21**, Firestore operations are designed to integrate directly with **Angular Signals** and standalone dependency injection, enabling real-time document and collection synchronization with zero boilerplate.
 
 > **Key Capabilities**:
+>
 > - Real-time snapshot streams via `collectionData()` and `docData()`
 > - Direct conversion to Angular Signals via `toSignal()` with initial values
 > - Automatic ID mapping with `{ idField: 'id' }`
 > - Robust offline persistence with IndexedDB caching
 > - Atomic transactions and batched writes
+> - Enterprise pipeline operations via `@angular/fire/firestore/pipelines`
 
 ---
 
@@ -25,6 +27,8 @@ order: 3
 │                   Cloud Firestore                      │
 ├──────────────────────────┬─────────────────────────────┤
 │   Query Builder Layer    │  collection(), query(), where()│
+├──────────────────────────┼─────────────────────────────┤
+│   Pipeline Layer         │  pipeline(), field(), execute()│
 ├──────────────────────────┼─────────────────────────────┤
 │   Observable Operators   │  collectionData(), docData()│
 ├──────────────────────────┼─────────────────────────────┤
@@ -160,6 +164,127 @@ export class UserCardComponent {
   );
 }
 ```
+
+---
+
+## Pipeline Operations
+
+Cloud Firestore Enterprise edition introduces **Pipeline queries**, enabling advanced multi-stage data processing, aggregation expressions, vector distance computations, sub-pipeline joins, and transformations directly on the database engine.
+
+In AngularFire, pipeline operations are available via dedicated submodules for both the standard and lightweight Firestore SDKs:
+
+```typescript
+// Standard Firestore SDK
+import { field, execute, greaterThan } from '@angular/fire/firestore/pipelines';
+
+// Firestore Lite SDK
+import { field as liteField, execute as liteExecute } from '@angular/fire/firestore/lite/pipelines';
+```
+
+Choose the `/lite/pipelines` entrypoint when using Firestore Lite. All exported functions and pipeline expressions are wrapped with Angular's zone management for seamless change detection.
+
+### Building and Executing Pipelines
+
+Inject `Firestore` (or `Firestore` from `@angular/fire/firestore/lite`), create a pipeline with `this.firestore.pipeline()`, configure your query stages, and pass the pipeline to `execute()`:
+
+```typescript
+import { Component, inject, signal } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
+import { execute, field, greaterThan } from '@angular/fire/firestore/pipelines';
+
+export interface Book {
+  id: string;
+  title: string;
+  rating: number;
+  author: string;
+}
+
+@Component({
+  selector: 'app-books-pipeline',
+  template: `
+    <div class="pipeline-container">
+      <h3>Top Rated Books</h3>
+      <button (click)="loadTopBooks()" [disabled]="loading()">
+        {{ loading() ? 'Executing Pipeline...' : 'Fetch Books' }}
+      </button>
+
+      <ul>
+        @for (book of books(); track book.id) {
+          <li>
+            <strong>{{ book.title }}</strong> — ★ {{ book.rating }}
+          </li>
+        }
+      </ul>
+    </div>
+  `,
+})
+export class BooksPipelineComponent {
+  private firestore = inject(Firestore);
+
+  readonly books = signal<Book[]>([]);
+  readonly loading = signal(false);
+
+  async loadTopBooks(): Promise<void> {
+    this.loading.set(true);
+    try {
+      // Pipelines support both Method Chaining and Functional approaches:
+
+      // 1. Method Chaining:
+      const chainedPipeline = this.firestore.pipeline()
+        .collection('books')
+        .where(field('rating').greaterThan(4.5));
+
+      // 2. Functional Approach:
+      const functionalPipeline = this.firestore.pipeline()
+        .collection('books')
+        .where(greaterThan(field('rating'), 4.5));
+
+      // Execute the pipeline against Firestore Enterprise
+      const results = await execute(functionalPipeline);
+      this.books.set(results as Book[]);
+    } finally {
+      this.loading.set(false);
+    }
+  }
+}
+```
+
+### Expression Styles: Method Chaining vs. Functional
+
+Firestore Pipelines support two interchangeable expression paradigms:
+
+- **Method Chaining**: Call comparison methods directly on field references:
+
+  ```typescript
+  const pipeline = this.firestore.pipeline()
+    .collection('books')
+    .where(field('rating').greaterThan(4.5));
+  ```
+
+- **Functional Approach**: Pass field references and operands to expression helpers:
+
+  ```typescript
+  const pipeline = this.firestore.pipeline()
+    .collection('books')
+    .where(greaterThan(field('rating'), 4.5));
+  ```
+
+### Advanced Operators and Capabilities
+
+The `@angular/fire/firestore/pipelines` submodule exposes the full suite of Firestore Pipeline expressions:
+
+- **Aggregations**: `count()`, `sum()`, `average()`, `minimum()`, `maximum()`, `arrayAgg()`
+- **Array Operations**: `arrayFilter()`, `arraySlice()`, `arraySum()`, `arrayContains()`
+- **Logic & Control Flow**: `and()`, `or()`, `not()`, `conditional()`, `coalesce()`, `ifNull()`, `switchOn()`
+- **String & Math Functions**: `toUpper()`, `toLower()`, `stringConcat()`, `round()`, `abs()`
+- **Vector & Distance**: `cosineDistance()`, `euclideanDistance()`, `dotProduct()`, `vectorLength()`
+- **Joins & Sub-pipelines**: Perform relational joins between collections using `join()` and `subcollection()`
+
+> **Firestore Enterprise Requirement**:
+>
+> - Pipelines require a Cloud Firestore **Enterprise edition** database. Standard edition databases are limited to Firestore Core query operations.
+> - Learn more about [Firestore Editions Comparison](https://firebase.google.com/docs/firestore/compare-editions-for-native-mode).
+> - Explore the official Firebase guides on [Getting Started with Pipelines](https://firebase.google.com/docs/firestore/pipelines/get-started-with-pipelines?hl=en) and [Performing Joins with Sub-Pipelines](https://firebase.google.com/docs/firestore/pipelines/perform-joins-with-sub-pipelines).
 
 ---
 
