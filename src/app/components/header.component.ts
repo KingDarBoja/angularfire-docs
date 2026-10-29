@@ -1,12 +1,16 @@
-import { Component, output } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, output } from "@angular/core";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
-  selector: 'app-header',
+  selector: "app-header",
   imports: [RouterLink, RouterLinkActive],
   template: `
-    <header class="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md">
-      <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header
+      class="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md"
+    >
+      <div
+        class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+      >
         <!-- Logo & Brand -->
         <div class="flex items-center gap-3">
           <button
@@ -15,21 +19,41 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
             class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:bg-slate-800 hover:text-slate-100 lg:hidden focus:outline-none"
             aria-label="Toggle navigation"
           >
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </button>
 
           <a routerLink="/" class="group flex items-center gap-2.5 transition">
             <!-- AngularFire Icon -->
-            <div class="relative flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br">
-              <img src="/angularfire_icon.svg" alt="" class="h-8 w-8 object-cover" />
+            <div
+              class="relative flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br"
+            >
+              <img
+                src="/angularfire_icon.svg"
+                alt=""
+                class="h-8 w-8 object-cover"
+              />
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-lg font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">
+              <span
+                class="text-lg font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors"
+              >
                 AngularFire
               </span>
-              <span class="rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[11px] font-mono font-semibold text-amber-300">
+              <span
+                class="rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[11px] font-mono font-semibold text-amber-300"
+              >
                 v21
               </span>
             </div>
@@ -37,7 +61,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         </div>
 
         <!-- Desktop Quick Navigation -->
-        <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-300">
+        <nav
+          class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-300"
+        >
           <a
             routerLink="/"
             routerLinkActive="text-amber-400 bg-amber-500/10"
@@ -72,8 +98,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
             routerLinkActive="text-amber-400 bg-amber-500/10"
             class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-colors hover:bg-slate-800 hover:text-white"
           >
-            <span>Vertex AI</span>
-            <span class="rounded-full bg-linear-to-r from-amber-500 to-orange-500 px-1.5 py-0.2 text-[9px] font-bold text-slate-950 uppercase tracking-wider">
+            <span>AI</span>
+            <span
+              class="rounded-full bg-linear-to-r from-amber-500 to-orange-500 px-1.5 py-0.2 text-[9px] font-bold text-slate-950 uppercase tracking-wider"
+            >
               NEW
             </span>
           </a>

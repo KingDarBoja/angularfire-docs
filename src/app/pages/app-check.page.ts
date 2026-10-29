@@ -32,7 +32,7 @@ interface DocAttributes {
         badge="Security & App Check"
         [toc]="page.toc ?? []"
         [prev]="{ label: 'Remote Config', route: '/remote-config' }"
-        [next]="{ label: 'Vertex AI & Genkit', route: '/ai' }"
+        [next]="{ label: 'Firebase AI Logic', route: '/ai' }"
       >
         <analog-markdown [content]="page.content" />
       </app-docs-layout>

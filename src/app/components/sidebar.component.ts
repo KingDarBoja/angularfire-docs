@@ -138,7 +138,7 @@ export class SidebarComponent {
     {
       title: 'Intelligence',
       items: [
-        { label: 'Vertex AI & Genkit', route: '/ai', badge: 'NEW', badgeColor: 'bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-bold' },
+        { label: 'Firebase AI Logic', route: '/ai', badge: 'NEW', badgeColor: 'bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-bold' },
       ],
     },
   ];
