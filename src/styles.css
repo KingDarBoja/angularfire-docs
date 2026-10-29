@@ -146,6 +146,14 @@ code[class*="language-"] {
   border-radius: 0 0.5rem 0.5rem 0;
   color: #e2e8f0;
   font-style: normal;
+  quotes: none;
+}
+
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after,
+.prose blockquote::before,
+.prose blockquote::after {
+  content: none;
 }
 
 .prose table {
