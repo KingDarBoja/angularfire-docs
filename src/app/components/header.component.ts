@@ -4,9 +4,12 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 @Component({
   selector: "app-header",
   imports: [RouterLink, RouterLinkActive],
+  host: {
+    class: "sticky top-0 z-40 block w-full",
+  },
   template: `
     <header
-      class="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md"
+      class="w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md"
     >
       <div
         class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
