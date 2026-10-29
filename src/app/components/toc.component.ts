@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 export interface TocItem {
   id: string;
@@ -6,8 +7,40 @@ export interface TocItem {
   level?: number;
 }
 
+export function decodeHtmlEntities(text: string): string {
+  if (!text) return '';
+  let result = text;
+  for (let i = 0; i < 2; i++) {
+    if (!result.includes('&')) break;
+    result = result
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&apos;/g, "'")
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&#(\d+);/g, (_, dec) => {
+        try {
+          return String.fromCodePoint(Number(dec));
+        } catch {
+          return _;
+        }
+      })
+      .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => {
+        try {
+          return String.fromCodePoint(parseInt(hex, 16));
+        } catch {
+          return _;
+        }
+      });
+  }
+  return result;
+}
+
 @Component({
   selector: 'app-toc',
+  imports: [RouterLink],
   template: `
     <nav class="space-y-4 text-sm" aria-label="Table of contents">
       <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
@@ -17,13 +50,15 @@ export interface TocItem {
         <span>{{ title() }}</span>
       </div>
 
-      @if (items().length > 0) {
+      @if (formattedItems().length > 0) {
         <ul class="space-y-2 border-l border-slate-800 text-xs">
-          @for (item of items(); track item.id) {
+          @for (item of formattedItems(); track item.id) {
             <li [class.pl-5]="item.level === 3" [class.pl-3]="item.level !== 3">
               <a
-                [href]="'#' + item.id"
-                class="block truncate text-slate-400 transition hover:text-amber-300"
+                [routerLink]="[]"
+                [fragment]="item.id"
+                (click)="scrollToSection(item.id, $event)"
+                class="block truncate text-slate-400 transition hover:text-amber-300 cursor-pointer"
                 [title]="item.text"
               >
                 {{ item.text }}
@@ -67,4 +102,24 @@ export interface TocItem {
 export class TocComponent {
   readonly title = input<string>('On this page');
   readonly items = input<TocItem[]>([]);
+
+  readonly formattedItems = computed(() =>
+    this.items().map((item) => ({
+      ...item,
+      text: decodeHtmlEntities(item.text),
+    }))
+  );
+
+  scrollToSection(id: string, event: MouseEvent): void {
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+      return;
+    }
+
+    if (typeof document !== 'undefined') {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
 }
